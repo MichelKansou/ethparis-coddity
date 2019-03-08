@@ -1,0 +1,176 @@
+{
+  "contractName": "PrinterContract",
+  "abi": [
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    }
+  ],
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a7230582051e05cadb496363ad90c013ac4ca1cef9a0c5995dca9e91dcfb53dd5231278b40029",
+  "deployedBytecode": "0x6080604052600080fdfea165627a7a7230582051e05cadb496363ad90c013ac4ca1cef9a0c5995dca9e91dcfb53dd5231278b40029",
+  "sourceMap": "26:57:1:-;;;55:26;8:9:-1;5:2;;;30:1;27;20:12;5:2;55:26:1;26:57;;;;;;",
+  "deployedSourceMap": "26:57:1:-;;;;;",
+  "source": "pragma solidity ^0.5.0;\n\n\ncontract PrinterContract {\n  constructor() public {\n  }\n}\n",
+  "sourcePath": "/Users/michelkansou/Documents/ethparis-coddity/src/ethereum/contracts/PrinterContract.sol",
+  "ast": {
+    "absolutePath": "/Users/michelkansou/Documents/ethparis-coddity/src/ethereum/contracts/PrinterContract.sol",
+    "exportedSymbols": {
+      "PrinterContract": [
+        63
+      ]
+    },
+    "id": 64,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 58,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 63,
+        "linearizedBaseContracts": [
+          63
+        ],
+        "name": "PrinterContract",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 61,
+              "nodeType": "Block",
+              "src": "76:5:1",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 62,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 59,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "66:2:1"
+            },
+            "returnParameters": {
+              "id": 60,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "76:0:1"
+            },
+            "scope": 63,
+            "src": "55:26:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 64,
+        "src": "26:57:1"
+      }
+    ],
+    "src": "0:84:1"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/michelkansou/Documents/ethparis-coddity/src/ethereum/contracts/PrinterContract.sol",
+    "exportedSymbols": {
+      "PrinterContract": [
+        63
+      ]
+    },
+    "id": 64,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 58,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 63,
+        "linearizedBaseContracts": [
+          63
+        ],
+        "name": "PrinterContract",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 61,
+              "nodeType": "Block",
+              "src": "76:5:1",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 62,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 59,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "66:2:1"
+            },
+            "returnParameters": {
+              "id": 60,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "76:0:1"
+            },
+            "scope": 63,
+            "src": "55:26:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 64,
+        "src": "26:57:1"
+      }
+    ],
+    "src": "0:84:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.2",
+  "updatedAt": "2019-03-08T21:24:12.523Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
