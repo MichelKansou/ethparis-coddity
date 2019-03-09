@@ -32,8 +32,12 @@ def print_piece():
 #Fonction pour DL le modele 
 def get_piece(hash):
     #envoie du hash au back de la marketplace
+    url="httpS://ethparis.herokuapp.com/piece_from_hash"
+    data = {"hash":hash}
+    response = request.post(url, json=data,).text
+
     #return la pièce
-    pass
+    return flask.jsonify(response)
 
 
 if __name__ == "__main__":
