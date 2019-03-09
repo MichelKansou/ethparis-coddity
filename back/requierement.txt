@@ -1,0 +1,4 @@
+flask
+flask_cors
+web3
+pandas
