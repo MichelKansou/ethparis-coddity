@@ -17,29 +17,57 @@ bdd = pd.DataFrame()
 #fonction d'initialisation de la bdd pour les test
 def init_bdd():
     global bdd 
-    bdd = pd.DataFrame({"file":["file1","file1","file2","file2","file3"],"licence":[1,5,1,10,1],"prix":[1,2,2,5,3]})
+    bdd = pd.DataFrame({"file":["file1","file2"],"licence":[1,5],"price":[1,1]})
     bdd['hash'] = bdd.apply(calcul_hash,axis=1)
 
 #calcul le hash d'un item
 def calcul_hash(item):
-    pass
+    global num_file
+    num_file+=1
+    return str(num_file)
+
 
 #route pour ajouter un nouveau produit
 @app.route('/new_product', methods=['POST'])
 def add_product():
-    product = request.file['modele']
+    global num_file
+    global bdd
+    num_file +=1
+    my_json = request.get_json()
+
+    product = my_json['file']
+    licence = my_json['number']
+    price = my_json['price']
+
+    file_name = "new_file_"+str(num_file) 
+    new_file = open(file_name,"w")
+    new_file.write(product)
+    new_file.close()
+
 
     #calcul du hash du produit
-
+    my_hash = num_file
 
     #ajout du produit à la bdd
-    pass
+    bdd = bdd.append({"file":file_name,"licence":licence,"price":price, "hash":my_hash},ignore_index=True)
+    save_bdd()
+
+    return flask.jsonify(True)
 
 #route pour ajouter une nouvelle licence à un produit
 @app.route('/new_licence', methods=['POST'])
 def add_licence():
+    global bdd
+    my_json = request.get_json()
+    
+    license = my_json["number"]
+    price = my_json["price"]
+    hash = my_json["hash"]
+    file = bdd[bdd["hash"]==hash]["hash"].iloc[0]
     #get id du produit, le nombre d'unité et le prix associé à ce nombre 
-    pass
+    bdd = bdd.append({"file":file,"licence":license,"price":price, "hash":hash},ignore_index=True)
+    save_bdd()
+    return flask.jsonify(True)
 
 #route pour acheter un produit
 @app.route('/buy', methods=['POST'])
@@ -57,11 +85,15 @@ def execute_contract(prix,user_key):
     pass
 
 #retourne une pièce à partir d'un hash 
-@app.route('/piece_from_hash/<string:hash>', methods=['GET'])
-def get_piece_from_hash(hash):
-    item = bdd[bdd["hash"]==hash]
-    return flask.jsonify(item.to_dict("records")[0])
-     
+@app.route('/piece_from_hash', methods=['POST'])
+def get_piece_from_hash():
+    my_json = request.get_json()
+    item = bdd[bdd["hash"]==my_json['hash']]
+    if len(item)>0:
+        return flask.jsonify(item.to_dict("records")[0])
+    else:
+        return flask.jsonify(False)
+    
 
 
 #rertourne l'ensemble des pièces et leurs prix (front pour afficher)
