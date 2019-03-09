@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { createLicence } from '../../../app/store/actions/licence.js';
 import './style.scss';
 
 class AddLicence extends Component {
@@ -7,8 +8,9 @@ class AddLicence extends Component {
         super(props);
         // Don't call this.setState() here!
         this.state = {
-            price: null,
-            file: ''
+            price: '',
+            file: '',
+            fileName: ''
         };
     }
 
@@ -18,12 +20,24 @@ class AddLicence extends Component {
     };
 
     handleSubmit(event) {
-        console.log('A name was submitted: ', this.state);
         event.preventDefault();
+        this.props.createLicence(this.props.account, this.state);
     }
 
+    handleFileChosen = (e, file) => {
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+            this.setState({
+                file: reader.result.split(',')[1],
+                fileName: file.name
+            });
+        };
+        reader.readAsDataURL(file);
+    };
+
     render() {
-        const { price, file } = this.state;
+        const { price, fileName } = this.state;
         const { account } = this.props;
 
         return (
@@ -33,10 +47,10 @@ class AddLicence extends Component {
                     <input className="input-form" placeholder="Address" type="text" value={ account } readOnly disabled />
                     <input className="input-form" placeholder="Price of 1 printing Licence ex: 0.1" type="text" value={ price } onChange={(e) => this.handleChange({price: e.target.value})} />
                     <div className="upload-container">
-                        <input className="fake-input" value={ file.replace("C:\\fakepath\\", "") } readOnly/>
+                        <input className="fake-input" value={ fileName.replace("C:\\fakepath\\", "") }  readOnly/>
                         <div className="file-upload-btn">
                             <span>Upload</span>
-                            <input type="file" accept="image/png, image/jpeg"  className="upload" onChange={(e) => this.handleChange({file: e.target.value})}/>
+                            <input ref="file" type="file"  className="upload" onChange={(e) => this.handleFileChosen(e, e.target.files[0])}/>
                         </div>
                     </div>
                     <button className="submit-btn" onClick={(e) => this.handleSubmit(e)}>Submit</button>
@@ -55,7 +69,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {};
+    return {
+        createLicence: (account, payload) => dispatch(createLicence(account, payload))
+    };
+
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddLicence);

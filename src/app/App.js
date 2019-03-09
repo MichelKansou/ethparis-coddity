@@ -5,7 +5,7 @@ import { web3 } from '../setup'
 import './App.scss';
 import { fetchMetaMaskAccount } from './store/actions/account.js';
 import configureStore from './store/configureStore';
-import AddLicence from "./components/addLicence";
+import Switcher from './components/switcher';
 const store = configureStore();
 
 class App extends Component {
@@ -34,8 +34,8 @@ class App extends Component {
 
         return (
             <Provider store={ store }>
-                <div className="app">
-                    <AddLicence />
+                <div className="App">
+                    <Switcher />
                 </div>
             </Provider>
         );

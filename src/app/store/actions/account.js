@@ -27,7 +27,7 @@ export function fetchMetaMaskAccount() {
         if (window.web3 && window.web3.currentProvider) {
             web3.eth.getAccounts((error, accounts) => {
                 dispatch(accountIsLoading(false));
-                if(error != null) { dispatch(accountHasErrored(true)) }
+                if(error) { dispatch(accountHasErrored(true)) }
                 web3.eth.defaultAccount = accounts[0];
                 accounts[0] != null ? dispatch(accountFetchDataSuccess(accounts[0])) : dispatch(accountHasErrored(true))
             })

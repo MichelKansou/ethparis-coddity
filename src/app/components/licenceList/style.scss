@@ -1,0 +1,68 @@
+.licence-list-container {
+    margin-top: 2em;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 940px;
+    margin: 4em auto;
+    .item {
+        cursor: pointer;
+        text-decoration: none;
+        text-decoration: none;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        background-color: #ffffff;
+        border: 1px solid #dfe4ea;
+        margin-bottom: 2em;
+        margin-right: 2em;
+        padding: 4em;
+        border-radius: 8px;
+        max-width: 300px;
+        box-shadow: rgba(47, 53, 66, 0.15) 0px 10px 20px;
+        transition: box-shadow 0.8s cubic-bezier(0.2, 0.8, 0.2, 1.2) 0s, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1.2) 0s;
+        &:hover {
+            box-shadow: rgba(47, 53, 66, 0.25) 0px 20px 40px;
+            transform: translateY(-3px);
+        }
+        &:last-child {
+            margin-right: 0;
+        }
+        .object-name {
+            color: #C6D0EB;
+            word-break: break-all;
+            font-size: 20px;
+        }
+        .object-hash {
+            color: #C6D0EB;
+            word-break: break-all;
+            font-size: 20px;
+        }
+        .object-price {
+            color: #C6D0EB;
+            word-break: break-all;
+            font-size: 20px;
+        }
+        .buy-btn {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 20px;
+            padding: 15px 30px;
+            box-shadow: rgba(39, 174, 96, 0.15) 0px 10px 20px;
+            margin-top: 1em;
+            margin-left: auto;
+            width: 100%;
+            display: block;
+            max-width: 200px;
+            cursor: pointer;
+            text-decoration: none;
+            outline: none;
+            transition: box-shadow 0.8s cubic-bezier(0.2, 0.8, 0.2, 1.2) 0s, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1.2) 0s;
+            &:hover {
+                box-shadow: rgba(39, 174, 96, 0.25) 0px 20px 40px;
+                transform: translateY(-3px);
+            }
+        }
+    }
+}

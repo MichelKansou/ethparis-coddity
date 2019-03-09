@@ -1,0 +1,22 @@
+.custom-btn {
+    background-color: #E1467C;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 20px;
+    padding: 15px 30px;
+    box-shadow: rgba(101, 41, 255, 0.15) 0px 10px 20px;
+    margin-top: 1em;
+    margin-left: auto;
+    width: 100%;
+    display: block;
+    max-width: 200px;
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    transition: box-shadow 0.8s cubic-bezier(0.2, 0.8, 0.2, 1.2) 0s, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1.2) 0s;
+    &:hover {
+        box-shadow: rgba(101, 41, 255, 0.25) 0px 20px 40px;
+        transform: translateY(-3px);
+    }
+}
