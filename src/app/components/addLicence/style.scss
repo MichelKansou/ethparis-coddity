@@ -1,0 +1,78 @@
+.add-licence-container {
+    background-color: white;
+    max-width: 800px;
+    width: 100%;
+    margin: auto;
+    border-radius: 8px;
+    .form {
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+        text-align: left;
+        .input-form {
+            padding: 1rem;
+            margin: 1rem 0;
+            max-width: 100%;
+        }
+        .submit-btn {
+            background-color: #9b59b6;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 20px;
+            padding: 15px 30px;
+            box-shadow: rgba(101, 41, 255, 0.15) 0px 10px 20px;
+            margin-top: 1em;
+            margin-left: auto;
+            width: 100%;
+            display: block;
+            max-width: 200px;
+            cursor: pointer;
+            text-decoration: none;
+            outline: none;
+            transition: box-shadow 0.8s cubic-bezier(0.2, 0.8, 0.2, 1.2) 0s, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1.2) 0s;
+            &:hover {
+                box-shadow: rgba(101, 41, 255, 0.25) 0px 20px 40px;
+                transform: translateY(-3px);
+            }
+        }
+        .upload-container {
+            display: flex;
+            width: 100%;
+            max-width: 300px;
+            margin-left: auto;
+            .fake-input{
+                background-color: white;
+                border: 1px solid gray;
+                padding: 1rem;
+                width: 100%;
+                flex: 1;
+            }
+            .file-upload-btn {
+                position: relative;
+                overflow: hidden;
+                border: 1px solid #27ae60;
+                border-left: 0;
+                border-radius: 0 2px 2px 0;
+                background-color: #27ae60;
+                color: white;
+                padding: 1rem 2rem;
+                display: block;
+                text-align: center;
+                .upload {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    margin: 0;
+                    padding: 0;
+                    font-size: 20px;
+                    cursor: pointer;
+                    width: 100%;
+                    height: 100%;
+                    opacity: 0;
+                    filter: alpha(opacity=0);
+                }
+            }
+        }
+    }
+}

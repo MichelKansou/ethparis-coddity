@@ -2,45 +2,44 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { web3 } from '../setup'
 
-import logo from '../logo.svg';
-import './App.css';
+import './App.scss';
 import { fetchMetaMaskAccount } from './store/actions/account.js';
 import configureStore from './store/configureStore';
+import AddLicence from "./components/addLicence";
 const store = configureStore();
 
 class App extends Component {
-  componentDidMount() {
-    store.dispatch(fetchMetaMaskAccount());
+    constructor(props) {
+        super(props);
+        // Don't call this.setState() here!
+        this.state = {
+            address: '',
+            price: null,
+            file: ''
+        };
+    }
 
-    setInterval(function() {
-      if(store.getState().account.toLowerCase() !== web3.eth.accounts[0]) {
+    async componentDidMount() {
         store.dispatch(fetchMetaMaskAccount());
-      }
-    }, 100);
-  }
+        setInterval(async () => {
+            const accounts = await web3.eth.getAccounts();
+            if(accounts[0].toLowerCase() !== store.getState().account.toLowerCase()) {
+                store.dispatch(fetchMetaMaskAccount());
+                this.setState({address: store.getState().account.toLowerCase()});
+            }
+        }, 1000);
+    }
 
-  render() {
-    return (
-        <Provider store={ store }>
-          <div className="App">
-            <header className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
-              <p>
-                Edit <code>src/App.js</code> and save to reload.
-              </p>
-              <a
-                  className="App-link"
-                  href="https://reactjs.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-              >
-                Learn React
-              </a>
-            </header>
-          </div>
-        </Provider>
-    );
-  }
+    render() {
+
+        return (
+            <Provider store={ store }>
+                <div className="app">
+                    <AddLicence />
+                </div>
+            </Provider>
+        );
+    }
 }
 
 export default App;
