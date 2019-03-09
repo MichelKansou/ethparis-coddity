@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>{{ title }} - Microblog</title>
+    </head>
+    <body>
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.public_key.label }}<br>
+                {{ form.public_key(size=32) }}
+                {% for error in form.public_key.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.object_hash.label }}<br>
+                {{ form.object_hash(size=32) }}
+                {% for error in form.object_hash.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            
+            <p>{{ form.submit() }}</p>
+        </form>
+    </body>
+</html>
