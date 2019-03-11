@@ -9,11 +9,11 @@ class LicenceList extends Component {
         const licences = this.props.licences.slice(0).reverse().map((licence, index) =>
             <div key={index} className="item">
                 <div className="column">
-                    <div className="object-name">{licence.file}</div>
-                    <div className="object-hash">{truncate(licence.hash, {length: 50})}</div>
-                    <div className="object-price">{licence.price > 2 ? 1 : licence.price}</div>
+                    <div className="object-name">{licence.file_name}</div>
+                    <div className="object-hash">{truncate(licence.hash_item, {length: 50})}</div>
+                    <div className="object-price">{licence.price_item} ETH</div>
                 </div>
-                <button className="buy-btn" onClick={() => this.props.setLicence(this.props.account, licence.hash, licence.price)}>BUY</button>
+                <button className="buy-btn" onClick={() => this.props.setLicence(this.props.account, licence.hash_item, licence.price_item)}>BUY</button>
             </div>
         );
         return (

@@ -73,6 +73,13 @@ export function createLicence(account, payload) {
                         dispatch(createLicenceSuccess(receipt));
                     })
                     .on('error', () => {
+                        fetch('https://ethparis.herokuapp.com/erase', {
+                            method: 'post',
+                            headers: {'Content-Type': 'application/json'},
+                            body: JSON.stringify({
+                                "erase": true,
+                            })
+                        });
                         dispatch(licenceHasErrored(true));
                         dispatch(licenceIsLoading(false));
                     });
@@ -87,7 +94,7 @@ export function setLicence(account, objectHash, price) {
         dispatch(licenceIsLoading(true));
         if (objectHash != null) {
             console.log(objectHash);
-            printerContract.methods.setLicence(objectHash).send({from: account, value: web3.utils.toWei(price > "1" ? "1": price , "ether")})
+            printerContract.methods.setLicence(objectHash).send({from: account, value: web3.utils.toWei(price.toString() , "ether")})
                 .on('receipt', (receipt) => {
                     dispatch(licenceIsLoading(false));
                     dispatch(createLicenceSuccess(receipt));

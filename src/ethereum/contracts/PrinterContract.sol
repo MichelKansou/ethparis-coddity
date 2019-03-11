@@ -80,7 +80,7 @@ contract PrinterContract is Chainlinked {
 
         deposits[msg.sender] = msg.value;
 
-        this.requestLicencePrice(licenceHash);
+        requestLicencePrice(licenceHash);
     }
 
     function getBalance() external view returns (uint256 amount) {
@@ -99,32 +99,32 @@ contract PrinterContract is Chainlinked {
     }
 
     // Creates a Chainlink request with the uint256 multiplier job
-    function requestLicencePrice(bytes32 _licenceHash)
-    public
-    onlyOwner
-    {
-        // newRequest takes a JobID, a callback address, and callback function as input
-        Chainlink.Request memory req = newRequest(UINT256_MUL_JOB, this, this.fulfill.selector);
-        // Adds a URL with the key "get" to the request parameters
-        req.add("url", "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD");
+    function requestLicencePrice(bytes32 _licenceHash) internal {
+        string memory objectHash = licenceStruct[_licenceHash].objectHash;
+        string memory body = string(abi.encodePacked("{'hash':'", objectHash, "'}"));
 
-        req.add("path", "USD");
+        // newRequest takes a JobID, a callback address, and callback function as input
+        Chainlink.Request memory req = newRequest(UINT256_JOB, this, this.fulfill.selector);
+
+        // Adds a URL with the key "get" to the request parameters
+        req.add("post", "https://ethparis.herokuapp.com/price_from_hash");
+        req.add("result", body);
+        req.add("path", "price");
         // Sends the request with 1 LINK to the oracle contract
         bytes32 requestId = chainlinkRequest(req, ORACLE_PAYMENT);
         licenseRequests[requestId] = _licenceHash;
         userRequests[requestId] = msg.sender;
     }
 
-    // fulfill receives a uint256 data type
-    function fulfill(bytes32 _requestId)
-    public
+    // fulfill receives a bytes32 data type
+    function fulfill(bytes32 _requestId, uint256 _price) public
         // Use recordChainlinkFulfillment to ensure only the requesting oracle can fulfill
     recordChainlinkFulfillment(_requestId)
     {
         bytes32 licenceHash = licenseRequests[_requestId];
         address sender = userRequests[_requestId];
 
-        require(currentLicencePrice != 0);
+        //require(_price == deposits[sender]);
 
         address to = licenceStruct[licenceHash].creator;
         accountBalance[to] += deposits[sender];
